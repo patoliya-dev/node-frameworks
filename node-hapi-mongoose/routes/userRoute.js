@@ -12,7 +12,7 @@ module.exports = [
         payload: Joi.object({
           name: Joi.string().required(),
           email: Joi.string().required(),
-          password: this.join.password().required()
+          password: Joi.string().required()
         })
       }
     }
