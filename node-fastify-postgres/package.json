@@ -1,0 +1,61 @@
+{
+    "name": "node-fastify-demo-application",
+    "version": "0.0.1",
+    "description": "node fastify demo application using typescript",
+    "main": "app.js",
+    "engines": {
+        "node": ">=8.10.0"
+    },
+    "scripts": {
+        "prestart": "prisma generate --schema src/prisma/schema.prisma",
+        "start": "fastify start -l info app.js",
+        "dev": "tsc && concurrently -k -p \"[{name}]\" -n \"TypeScript,App\" -c \"yellow.bold,cyan.bold\" \"tsc -w\" \"fastify start --ignore-watch=.ts$ -w -l info -P dist/app.js\"",
+        "build": "tsc && cp -r src/prisma/ package.json package-lock.json .ebextensions dist/",
+        "build-files": "copyfiles -u 0 src/public/*/*.* dist",
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start:debug": "tsc-watch -p tsconfig.json --onSuccess \"node --inspect ./node_modules/.bin/fastify start -l info -P dist/app.js\""
+    },
+    "repository": {
+        "type": "git",
+        "url": "git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com"
+    },
+    "homepage": "#",
+    "devDependencies": {
+        "@tsconfig/node14": "^1.0.1",
+        "@types/node": "^15.12.5",
+        "@typescript-eslint/eslint-plugin": "^4.28.1",
+        "@typescript-eslint/parser": "^4.28.1",
+        "concurrently": "^6.2.0",
+        "eslint": "^7.29.0",
+        "eslint-plugin-node": "^11.1.0",
+        "nodemon": "^2.0.7",
+        "prisma": "^2.26.0",
+        "ts-node": "^10.0.0",
+        "tsc-watch": "^4.5.0",
+        "typescript": "^4.3.4"
+    },
+    "dependencies": {
+        "@prisma/client": "^2.26.0",
+        "aws-sdk": "^2.1043.0",
+        "copyfiles": "^2.4.1",
+        "cron": "^1.8.2",
+        "dotenv": "^10.0.0",
+        "fastify": "^3.18.1",
+        "fastify-autoload": "^3.8.0",
+        "fastify-cli": "^2.13.0",
+        "fastify-cors": "^6.0.1",
+        "fastify-cron": "^1.1.2",
+        "fastify-file-upload": "^3.0.0",
+        "fastify-plugin": "^3.0.0",
+        "fastify-sensible": "^3.1.1",
+        "form-data": "^4.0.0",
+        "jsonwebtoken": "^8.5.1",
+        "moment": "^2.29.1",
+        "prisma": "^2.26.0"
+    }
+}

@@ -1,0 +1,30 @@
+version: 0.2
+
+phases:
+    install:
+        runtime-versions:
+            nodejs: 12
+        commands:
+            - npm install -g typescript
+            - npm install
+    pre_build:
+        commands:
+            - echo Pre-Build started on `date`
+            - npx prisma generate --schema=src/prisma/schema.prisma
+            - npx prisma db push --schema=src/prisma/schema.prisma --accept-data-loss
+            - npm run build-files
+    build:
+        commands:
+            - echo Build started on `date`
+            - npm run build
+    post_build:
+        commands:
+            - echo Build completed on `date`
+cache:
+    paths:
+        - "node_modules/**/*"
+artifacts:
+    files:
+        - "**/*"
+    base-directory: "dist"
+    name: typescript-node-fastify-demo-$(date +%Y-%m-%d)

@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.env
+.DS_Store
+.idea
+node-fastify-mongoose/node_modules
+node-fastify-mongoose/dist
+node-fastify-mongoose/.env
+node-fastify-postgres/node_modules
+node-fastify-postgres/dist
+node-fastify-postgres/.env
+node-hapi-mongoose/node_modules
+node-hapi-mongoose/dist
+node-hapi-mongoose/.env
