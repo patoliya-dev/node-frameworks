@@ -1,14 +1,5 @@
-const userService = require('../services/userService');
+const userService = require('../services/user.service');
 const Boom = require('@hapi/boom');
-
-const addUser = async (request, h) => {
-    try {
-        const User = await userService.createUser(request.payload);
-        return {data:User,message: 'User has been Inserted!'};
-      } catch (e) {
-        return Boom.badData(e.message);
-      }
-};
 
 const getUser = async (request, h) => {
     try {
@@ -50,7 +41,6 @@ const editUser = async (request, h) => {
 };
 
 module.exports = {
-    addUser,
     getUser,
     getSingleUser,
     deleteUser,

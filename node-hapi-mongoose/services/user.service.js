@@ -1,13 +1,4 @@
-const user = require('../models/userModel');
-
-const createUser = async (userData) => {
-    try{
-     const findUserData = await user.create(userData);
-     return findUserData;
-    } catch(e) {
-     throw new Error(e.message);
-    }
- };
+const user = require('../models/user.model');
 
  const findUser = async () => {
     try{
@@ -18,11 +9,11 @@ const createUser = async (userData) => {
     }
  };
 
- const findByIdUser = async (userId) => {
+ const findUserByFilter = async (filter) => {
     try{
-     const findByIdUserData = await user.findById(userId);
-     if(!findByIdUserData) throw new Error('User Not exist!');
-     return findByIdUserData;
+     const userDetails = await user.findOne(filter);
+     if(!userDetails) throw new Error('User Not exist!');
+     return userDetails;
     } catch(e) {
      throw new Error(e.message);
     }
@@ -49,9 +40,8 @@ const createUser = async (userData) => {
  };
 
 module.exports = {
-    createUser,
     findUser,
-    findByIdUser,
+    findUserByFilter,
     removeUser,
     updateUser
 };
