@@ -5,13 +5,15 @@ module.exports = [
   {
     method: 'GET',
     path: '/api/user',
-    handler: userController.getUser
+    config: {
+      handler: userController.getUser
+    },
   },
   {
     method: 'GET',
     path: '/api/user/{userId}',
-    handler: userController.getSingleUser,
-    options: {
+    config: {
+      handler: userController.getSingleUser,
       validate: {
         params: Joi.object({
           userId: Joi.string().required()
@@ -22,8 +24,8 @@ module.exports = [
   {
     method: 'DELETE',
     path: '/api/user/{userId}',
-    handler: userController.deleteUser,
-    options: {
+    config: {
+      handler: userController.deleteUser,
       validate: {
         params: Joi.object({
           userId: Joi.string().required()
@@ -34,8 +36,8 @@ module.exports = [
   {
     method: 'PUT',
     path: '/api/user/{userId}',
-    handler: userController.editUser,
-    options: {
+    config: {
+      handler: userController.editUser,
       validate: {
         params: Joi.object({
           userId: Joi.string().required()
